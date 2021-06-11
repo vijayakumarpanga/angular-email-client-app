@@ -6,4 +6,7 @@
     <div *ngIf="signupForm.errors">
         {{signupForm.errors | json}}
     </div>
+    <div *ngIf="signupForm.controls.name.errors">
+        {{signupForm.controls.name.errors| json}}
+    </div>
 </form>
