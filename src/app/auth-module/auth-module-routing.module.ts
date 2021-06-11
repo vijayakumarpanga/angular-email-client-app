@@ -5,7 +5,7 @@ import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
-  { path: '', component: SignupComponent }];
+  { path: 'signup', component: SignupComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,1 +1,21 @@
-<p>input works!</p>
+<div class="field">
+    <label class="label">{{label}}</label>
+    <input class="input" [formControl]="control">
+    <ng-container *ngIf="control.errors && control.touched && control.dirty">
+        <div *ngIf="control.errors.required">
+            Value required
+        </div>
+        <div *ngIf="control.errors.minlength">
+            You have entered value of {{control.errors.minlength.actualLength}} characters long,
+            value sholud be minimum of {{control.errors.minlength.requiredLength}} characters long
+        </div>
+        <div *ngIf="control.errors.maxlength">
+            You have entered value of {{control.errors.mixlength.actualLength}} characters long,
+            value sholud be maximum of {{control.errors.mixlength.requiredLength}} characters long
+
+        </div>
+        <div *ngIf="control.errors.patter">
+            Invalid format
+        </div>
+    </ng-container>
+</div>

@@ -1,3 +1,6 @@
-<input>
-<input>
-<input>
+<form class="form" [formGroup]="signupForm">
+    <app-input label="Name" [control]="signupForm.get('name')"> </app-input>
+    <app-input label="Password" [control]="signupForm.get('password')"> </app-input>
+    <app-input label="Confirm Password" [control]="signupForm.get('confirmPassword')"> </app-input>
+    <button class="button">Sign Up</button>
+</form>
