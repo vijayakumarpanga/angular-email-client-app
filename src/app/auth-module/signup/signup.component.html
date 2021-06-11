@@ -3,4 +3,7 @@
     <app-input label="Password" [control]="signupForm.get('password')"> </app-input>
     <app-input label="Confirm Password" [control]="signupForm.get('confirmPassword')"> </app-input>
     <button class="button">Sign Up</button>
+    <div *ngIf="signupForm.errors">
+        {{signupForm.errors | json}}
+    </div>
 </form>
