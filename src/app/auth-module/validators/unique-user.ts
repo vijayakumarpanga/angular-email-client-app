@@ -10,12 +10,17 @@ export class UniqueUser implements AsyncValidator {
         console.log(control.value)
         return this.authService.fetchUniqueUser(control.value).pipe(
             map(value => {
-                console.log("inside map", value)
 
+                
+                console.log("inside map", value)
                 return null;
+                
             }
             ),
             catchError((err) => {
+                if(err.status===0){
+                    return of({noConnection : true})
+                }
                 console.log("inside error", err)
                 return of({ nonUniqe: true })
             })

@@ -1,12 +1,26 @@
-<form class="form" [formGroup]="signupForm">
-    <app-input label="Name" [control]="signupForm.get('name')"> </app-input>
+
+<h3>Create Account</h3>
+<div >
+<form class="ui form" [formGroup]="signupForm"  (ngSubmit)="signup()">
+    <app-input label="Name" [control]="signupForm.get('username')"> </app-input>
     <app-input label="Password" [control]="signupForm.get('password')"> </app-input>
-    <app-input label="Confirm Password" [control]="signupForm.get('confirmPassword')"> </app-input>
-    <button class="button">Sign Up</button>
-    <div *ngIf="signupForm.errors">
-        {{signupForm.errors | json}}
+    <app-input label="Confirm Password" [control]="signupForm.get('passwordConfirmation')"> </app-input>
+    <ng-container  *ngIf="signupForm.controls.password.touched &&
+    signupForm.controls.passwordConfirmation.touched && 
+    signupForm.errors">
+    <div class="ui red basic label"  *ngIf="signupForm.errors.passwordNotMatch">
+        Password and Password confirmation must match.
     </div>
-    <div *ngIf="signupForm.controls.name.errors">
-        {{signupForm.controls.name.errors| json}}
+    <div class="ui red basic label" *ngIf="signupForm.errors.noConnection">
+        signup failed , No internet connection detected.
     </div>
+    <div class="ui red basic label" *ngIf="signupForm.errors.noConnection">
+        signup failed , Unknow error.
+    </div>
+    </ng-container>
+    <div>
+    <button class="ui submit button primary" [disabled]="signupForm.invalid">Sign Up</button>
+   
+</div>
 </form>
+</div>
