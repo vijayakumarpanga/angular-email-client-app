@@ -37,10 +37,10 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.authService.signup(this.signupForm).subscribe(
-      (data)=>{ 
+     (data)=>{ 
         console.log(data)
       },
-      (err)=>{
+     (err)=>{
         console.log(err)
         if(!err.status)
         this.signupForm.setErrors({noConnection : true})
