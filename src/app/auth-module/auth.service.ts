@@ -41,4 +41,12 @@ export class AuthService {
        }
      ))
   }
+  signout(){
+    return this.http.post('https://api.angular-email.com/auth/signout',{}).pipe(
+      tap((data)=>{
+          this.signedin$.next(false);
+         console.log("inside signout tap",data)
+       }
+     ))
+  }
 }
