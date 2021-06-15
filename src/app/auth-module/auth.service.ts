@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import {tap} from'rxjs/operators'
 interface fetchUniqueUserResponse{
@@ -48,5 +48,13 @@ export class AuthService {
          console.log("inside signout tap",data)
        }
      ))
+  }
+  signin(signinForm : FormGroup){
+    return this.http.post<{username:string}>('https://api.angular-email.com/auth/signin',signinForm.value).pipe(
+      tap((data=>{
+          this.signedin$.next(false);
+          console.log("inside signin tap",data)
+      }))
+    )
   }
 }

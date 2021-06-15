@@ -1,1 +1,21 @@
-<p>signin works!</p>
+<h3>Sign In</h3>
+<div>
+    <form class="ui form" [formGroup]="signinForm" (ngSubmit)="signin()">
+        <app-input label="Name" [control]="signinForm.get('username')"> </app-input>
+        <app-input label="Password" [control]="signinForm.get('password')"> </app-input>
+        <ng-container *ngIf="signinForm.errors" >
+            <div class="ui red basic label" *ngIf="signinForm.errors.invalidCredentials">
+                Invalid username or password
+            </div>
+            <div class="ui red basic label" *ngIf="signinForm.errors.noConnection">
+                signin failed , No internet connection detected.
+            </div>
+            <div class="ui red basic label" *ngIf="signinForm.errors.unKnown">
+                signin failed , Unknow error.
+            </div>
+        </ng-container>
+        <div>
+            <button class="ui submit button primary" [disabled]="signinForm.invalid">Sign In</button>
+        </div>
+    </form>
+</div>
