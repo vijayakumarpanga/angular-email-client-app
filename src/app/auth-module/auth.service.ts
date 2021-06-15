@@ -31,4 +31,14 @@ export class AuthService {
    
 
   }
+  chechAuth(){
+    return this.http.get<{authenticated:boolean,username:string}>('https://api.angular-email.com/auth/signedin').pipe(
+      tap(
+       (data)=>{
+         if(data.authenticated)
+          this.signedin$.next(data.authenticated);
+         console.log("inside signup tap",data)
+       }
+     ))
+  }
 }
