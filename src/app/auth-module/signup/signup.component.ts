@@ -5,6 +5,7 @@ import { PasswordMatch } from '../validators/password-match'
 import { UniqueUser } from '../validators/unique-user';
 import {catchError, map} from 'rxjs/operators'
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -26,7 +27,10 @@ export class SignupComponent implements OnInit {
     Validators.minLength(4),
     Validators.maxLength(18)])
   }, { validators: [this.passworsMatch.validate] })
-  constructor(private passworsMatch: PasswordMatch, private uniquUser: UniqueUser,private authService : AuthService) {
+  constructor(private passworsMatch: PasswordMatch,
+     private uniquUser: UniqueUser,
+     private authService : AuthService,
+     private router : Router) {
     console.log(this.signupForm)
    }
 
@@ -39,6 +43,7 @@ export class SignupComponent implements OnInit {
     this.authService.signup(this.signupForm).subscribe(
      (data)=>{ 
         console.log(data)
+         this.router.navigateByUrl('/inbox')
       },
      (err)=>{
         console.log(err)

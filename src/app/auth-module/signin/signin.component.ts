@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-signin',
@@ -18,7 +19,7 @@ export class SigninComponent implements OnInit {
     password: new FormControl('', [Validators.required,
     Validators.minLength(4),
     Validators.maxLength(18)])})
-  constructor(private authService :AuthService) { }
+  constructor(private authService :AuthService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,8 @@ export class SigninComponent implements OnInit {
       //Navigation code
        (data)=>{
         console.log(data)
+        this.router.navigateByUrl('/inbox')
+
       },
      (err)=>{
        console.log("Inside errors",err)
