@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth-module/auth.service';
 
@@ -13,7 +14,7 @@ export class AppComponent {
   //use async pipe directly in template
   //signedin$ : BehaviorSubject<boolean>
  
-  constructor(private authService : AuthService){
+  constructor(private authService : AuthService,private router :Router){
     //this.signedin$=this.authService.signedin$
   }
 
@@ -22,7 +23,10 @@ export class AppComponent {
     this.authService.chechAuth().subscribe();
     this.authService.signedin$.subscribe((signedin)=> {
         console.log("ng oninit",signedin)
-        this.signedin=signedin} )
+        this.signedin=signedin
+        this.router.navigateByUrl('/inbox')
+      }  
+        )
     
     
   }

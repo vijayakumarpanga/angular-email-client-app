@@ -37,7 +37,7 @@ export class AuthService {
        (data)=>{
          if(data.authenticated)
           this.signedin$.next(data.authenticated);
-         console.log("inside signup tap",data)
+          console.log("inside signup tap",data)
        }
      ))
   }
@@ -52,7 +52,7 @@ export class AuthService {
   signin(signinForm : FormGroup){
     return this.http.post<{username:string}>('https://api.angular-email.com/auth/signin',signinForm.value).pipe(
       tap((data=>{
-          this.signedin$.next(false);
+          this.signedin$.next(true);
           console.log("inside signin tap",data)
       }))
     )
